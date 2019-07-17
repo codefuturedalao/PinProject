@@ -19,6 +19,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
 public class HttpUtil {
+    public static String ServeUrl = "http://10.135.10.112:8080/Manager/UserServlet";
     //创建HttpClient对象
     public static HttpClient httpClient = new DefaultHttpClient();
     /**

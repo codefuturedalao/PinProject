@@ -13,13 +13,14 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
+import top.codefuturesql.loginandregi.HttpUtil;
 import top.codefuturesql.loginandregi.Registration;
 
 public class RegisterActivity extends AppCompatActivity {
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
-    final String url = "http://10.133.185.65:8080/Manager/UserServlet";
+    final String url = HttpUtil.ServeUrl;
 
     private UserRegisterTask mAuthTask = null;
 
