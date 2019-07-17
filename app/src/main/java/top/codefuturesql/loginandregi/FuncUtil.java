@@ -24,5 +24,6 @@ public class FuncUtil {
 
     public static sendMessage(String message){
         SimpleDateFormat nowTime = new SimpleDateFormat("yyyy-MM-dd- HH-mm-ss");
+        this is from cgb;
     }
 }
