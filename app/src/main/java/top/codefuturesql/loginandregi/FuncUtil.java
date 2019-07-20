@@ -117,9 +117,10 @@ public class FuncUtil {
         }
         return true;
     }
-    public static void getMessage(String []message,String [] sendtime,double []longitude,double []latitude){
+    public static Message[] getMessage(){
         Map<String,String> map = new HashMap<>();
         JSONObject jsonObject;
+        Message [] mes;
         String name = getName();
         try {
             map.put("name",name);
@@ -127,27 +128,28 @@ public class FuncUtil {
             String result = HttpUtil.postRequest(HttpUtil.ServeUrl,map);
             jsonObject =  new JSONObject(result);
             int length = jsonObject.length();
-            message = new String[length/4];
-            sendtime = new String[length/4];
-            longitude = new double[length/4];
-            latitude = new double[length/4];
+            mes = new Message[length/4];
             for(int i = 0;i<jsonObject.length();i+=4){
-                message[(i/4)] = jsonObject.getString("message"+(i/4+1));
-                sendtime[(i/4)] = jsonObject.getString("sendtime"+(i/4+1));
-                longitude[(i/4)] = jsonObject.getDouble("longitude"+(i/4+1));
-                latitude[(i/4)] = jsonObject.getDouble("latitude"+(i/4+1));
+                String message = jsonObject.getString("message"+(i/4+1));
+                String sendtime = jsonObject.getString("sendtime"+(i/4+1));
+                double longitude = jsonObject.getDouble("longitude"+(i/4+1));
+                double latitude = jsonObject.getDouble("latitude"+(i/4+1));
+                mes[i/4] = new Message(message,sendtime,longitude,latitude);
 //                System.out.println("" + message[(i/4)]);
 //                System.out.println("" + sendtime[(i/4)]);
 //                System.out.println("" + longitude[(i/4)]);
 //                System.out.println("" + latitude[(i/4)]);
             }
+            return mes;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
-    public static void getAlarm(String []alarm,String [] sendtime,double []longitude,double []latitude){
+    public static Alarm[] getAlarm(){
         Map<String,String> map = new HashMap<>();
         JSONObject jsonObject;
+        Alarm [] ala;
         String name = getName();
         try {
             map.put("name",name);
@@ -155,24 +157,24 @@ public class FuncUtil {
             String result = HttpUtil.postRequest(HttpUtil.ServeUrl,map);
             jsonObject =  new JSONObject(result);
             int length = jsonObject.length();
-            alarm = new String[length/4];
-            sendtime = new String[length/4];
-            longitude = new double[length/4];
-            latitude = new double[length/4];
+            ala = new Alarm[length/4];
             for(int i = 0;i<jsonObject.length();i+=4){
-                alarm[(i/4)] = jsonObject.getString("alarm"+(i/4+1));
-                sendtime[(i/4)] = jsonObject.getString("sendtime"+(i/4+1));
-                longitude[(i/4)] = jsonObject.getDouble("longitude"+(i/4+1));
-                latitude[(i/4)] = jsonObject.getDouble("latitude"+(i/4+1));
+                String alarm = jsonObject.getString("alarm"+(i/4+1));
+                String sendtime = jsonObject.getString("sendtime"+(i/4+1));
+                double longitude = jsonObject.getDouble("longitude"+(i/4+1));
+                double latitude = jsonObject.getDouble("latitude"+(i/4+1));
+                ala[i/4] = new Alarm(alarm,sendtime,longitude,latitude);
 //                System.out.println("" + alarm[(i/4)]);
 //                System.out.println("" + sendtime[(i/4)]);
 //                System.out.println("" + longitude[(i/4)]);
 //                System.out.println("" + latitude[(i/4)]);
             }
-            System.out.println("the alarm's object'length is "+alarm.length);
+            System.out.println("the alarm's object'length is "+ala.length);
+            return ala;
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
     //test
     private static String getName(){
