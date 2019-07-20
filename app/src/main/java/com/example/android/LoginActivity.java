@@ -13,6 +13,7 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
+import top.codefuturesql.loginandregi.FuncUtil;
 import top.codefuturesql.loginandregi.HttpUtil;
 import top.codefuturesql.loginandregi.Login;
 
@@ -78,10 +79,6 @@ public class LoginActivity extends AppCompatActivity {
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
         }
@@ -170,6 +167,22 @@ public class LoginActivity extends AppCompatActivity {
             Map<String,String> map = new HashMap<>();
             map.put("name",mEmail);
             map.put("password",mPassword);
+//            FuncUtil.sendMessage("now i an in losAngle!");
+//            FuncUtil.sendAlarm("and there is a hole in losAngle",10,-118.4079f, 33.9434f);
+//
+            String[] alarm = new String[0];
+            String[] sendtime = new String[0];
+            double[] longitude = new double[0];
+            double[] latitude = new double[0];
+            FuncUtil.getAlarm(alarm,sendtime,longitude,latitude);
+            System.out.println(alarm.length);
+            for(int i = 0;i<2;i++){
+                System.out.println("there is "+alarm.length+" alarm");
+                System.out.println("" + alarm[i]);
+                System.out.println("" + sendtime[i]);
+                System.out.println("" + longitude[i]);
+                System.out.println("" + latitude[i]);
+            }
             return (Login.login(url,map));
         }
         @Override
