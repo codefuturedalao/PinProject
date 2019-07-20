@@ -13,8 +13,6 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-import top.codefuturesql.loginandregi.Alarm;
-import top.codefuturesql.loginandregi.FuncUtil;
 import top.codefuturesql.loginandregi.HttpUtil;
 import top.codefuturesql.loginandregi.Login;
 
@@ -28,18 +26,19 @@ public class LoginActivity extends AppCompatActivity {
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private EditText mEmailView;
+    private EditText mUserNameView;
     private EditText mPasswordView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_by_email);
+        setContentView(R.layout.login_by_name);
         //initialize
-        mEmailView = (EditText) findViewById(R.id.emailInLogin);
+        mUserNameView = (EditText) findViewById(R.id.userNameInLogin);
         mPasswordView = (EditText) findViewById(R.id.passwordInLogin);
 
         //注册事件
-        Button loginButton = (Button)findViewById(R.id.login);
+        Button loginButton = (Button) findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
+     * If there are form errors (invaliduserName, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin(String url) {
@@ -60,11 +59,11 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // Reset errors.
-        mEmailView.setError(null);
+        mUserNameView.setError(null);
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
+        String userName = mUserNameView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -77,10 +76,10 @@ public class LoginActivity extends AppCompatActivity {
             cancel = true;
         }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
+        // Check for a validuserName address.
+        if (TextUtils.isEmpty(userName)) {
+            mUserNameView.setError(getString(R.string.error_field_required));
+            focusView = mUserNameView;
             cancel = true;
         }
 
@@ -92,20 +91,20 @@ public class LoginActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             //    showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(userName, password);
 
-            if (mAuthTask.login(url)){
-                Toast.makeText(LoginActivity.this,"Success to log in!",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this,MapActivity.class);
+            if (mAuthTask.login(url)) {
+                Toast.makeText(LoginActivity.this, "Success to log in!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, MapActivity.class);
                 startActivity(intent);
-            }
-            else
-                Toast.makeText(LoginActivity.this,"Fail to log in!",Toast.LENGTH_SHORT).show();
+            } else
+                Toast.makeText(LoginActivity.this, "Fail to log in!", Toast.LENGTH_SHORT).show();
         }
     }
-    private boolean isEmailValid(String email) {
+
+    private boolean isUserNameValid(String userName) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        return userName.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
@@ -120,11 +119,11 @@ public class LoginActivity extends AppCompatActivity {
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
+        private final String mUserName;
         private final String mPassword;
 
-        UserLoginTask(String email, String password) {
-            mEmail = email;
+        UserLoginTask(String userName, String password) {
+            mUserName = userName;
             mPassword = password;
         }
 
@@ -141,7 +140,7 @@ public class LoginActivity extends AppCompatActivity {
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
+                if (pieces[0].equals(mUserName)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
@@ -164,10 +163,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
-        public boolean login(String url){
-            Map<String,String> map = new HashMap<>();
-            map.put("name",mEmail);
-            map.put("password",mPassword);
+        public boolean login(String url) {
+            Map<String, String> map = new HashMap<>();
+            map.put("name", mUserName);
+            map.put("password", mPassword);
 ////            FuncUtil.sendMessage("now i an in losAngle!");
 ////            FuncUtil.sendAlarm("and there is a hole in losAngle",10,-118.4079f, 33.9434f);
 ////
@@ -179,8 +178,9 @@ public class LoginActivity extends AppCompatActivity {
 //                System.out.println("" + ala[i].longitude);
 //                System.out.println("" + ala[i].latitude);
 //            }
-            return (Login.login(url,map));
+            return (Login.login(url, map));
         }
+
         @Override
         protected void onCancelled() {
             mAuthTask = null;

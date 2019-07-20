@@ -55,19 +55,19 @@
         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
         <EditText
-            android:id="@+id/emailInLogin"
-            android:ems="10"
-            android:inputType="textEmailAddress"
+            android:id="@+id/userNameInLogin"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="0dp"
             android:background="@null"
+            android:ems="10"
+            android:hint="用户名"
+            android:inputType="textPersonName"
             android:textColor="#ffffff"
-            android:hint="电子邮箱"
             android:textColorHint="#ffffff"
-            android:textSize="20sp"/>
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/passwordInLogin"
@@ -100,33 +100,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearlayout10" />
-
-    <LinearLayout
-        android:id="@+id/linearlayout11"
-        android:layout_width="100dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/bottom_shape_forbottom5"
-        android:orientation="vertical"
-        app:layout_constraintHorizontal_weight="8"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login">
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="match_parent"
-            android:layout_height="21dp"
-            android:background="@null"
-            android:text="短信验证登录"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            tools:layout_editor_absoluteX="52dp"
-            tools:layout_editor_absoluteY="414dp" />
-    </LinearLayout>
 
     <TextView
         android:id="@+id/textView8"

@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/appIcon"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
@@ -35,7 +35,7 @@
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/appIcon" />
 
     <LinearLayout
         android:id="@+id/linearLayout5"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginStart="10dp"
@@ -63,16 +63,12 @@
             android:layout_marginTop="0dp"
             android:background="@null"
             android:ems="10"
+            android:hint="手机号"
             android:inputType="phone"
             android:textColor="#ffffff"
-            android:hint="手机号"
             android:textColorHint="#ffffff"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="2dp"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
@@ -90,7 +86,7 @@
         app:layout_constraintTop_toTopOf="@+id/linearLayout5">
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/captcha"
             android:layout_width="171dp"
             android:layout_height="45dp"
             android:layout_marginLeft="10dp"
@@ -103,7 +99,7 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/getCaptcha"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:layout_marginStart="0dp"
@@ -122,7 +118,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/login"
         android:layout_width="280dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
@@ -152,10 +148,10 @@
         android:orientation="vertical"
         app:layout_constraintHorizontal_weight="8"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3">
+        app:layout_constraintTop_toBottomOf="@+id/login">
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/accountNumberLogin"
             android:layout_width="match_parent"
             android:layout_height="21dp"
             android:background="@null"
@@ -167,7 +163,6 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
@@ -198,7 +193,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/wechatLogin"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:background="@null"
@@ -209,7 +204,7 @@
             app:srcCompat="@drawable/wechat_icon" />
 
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/qqLogin"
             android:layout_width="65dp"
             android:layout_height="65dp"
             android:layout_marginLeft="35dp"
