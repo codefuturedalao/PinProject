@@ -96,10 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
             mUserNameView.setError(getString(R.string.error_field_required));
             focusView = mUserNameView;
             cancel = true;
-        } else if (!isEmailValid(userName)) {
-            mUserNameView.setError("The userName isn't valid");
-            focusView = mUserNameView;
-            cancel = true;
         }
 
         if (cancel) {
