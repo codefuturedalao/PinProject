@@ -1,5 +1,8 @@
 package top.codefuturesql.loginandregi;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -196,8 +199,24 @@ public class FuncUtil {
     }
 
     //test
-    private static String getName() {
-        return "Jackson";
-    }
+  //  private static String getName() {
+  //      return "Jackson";
+  //  }
 
+    public static String getName(){
+        SQLiteDatabase db = DatabaseUtil.dbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select username from account ",null);
+        if (cursor.moveToNext()){
+            String username = cursor.getString(cursor.getColumnIndex("username"));
+            cursor.close();
+            return username;
+        }
+        cursor.close();
+        return "";
+
+    }
+    public static void setName(String username,String password){
+        DatabaseUtil.createDatabase();
+        DatabaseUtil.insertData(username,password);
+    }
 }
