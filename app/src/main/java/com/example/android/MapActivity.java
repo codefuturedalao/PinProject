@@ -92,6 +92,7 @@ public class MapActivity extends AppCompatActivity {
             if (geoMessage) {
                 addPoint();
             }
+            FuncUtil.updatePosition((float)location.getLongitude(),(float)location.getLatitude());
         }
     };
 

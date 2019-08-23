@@ -1,5 +1,6 @@
 package com.example.android;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import java.util.Map;
 import top.codefuturesql.loginandregi.HttpUtil;
 import top.codefuturesql.loginandregi.Login;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
@@ -37,11 +38,12 @@ public class LoginActivity extends AppCompatActivity {
         mUserNameView = (EditText) findViewById(R.id.userNameInLogin);
         mPasswordView = (EditText) findViewById(R.id.passwordInLogin);
 
-        //注册事件
+        //注册登录事件
         Button loginButton = (Button) findViewById(R.id.login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 attemptLogin(url);
             }
         });
@@ -91,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             //    showProgress(true);
+
             mAuthTask = new UserLoginTask(userName, password);
 
             if (mAuthTask.login(url)) {

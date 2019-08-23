@@ -1,5 +1,6 @@
 package com.example.android;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import java.util.Map;
 import top.codefuturesql.loginandregi.HttpUtil;
 import top.codefuturesql.loginandregi.Registration;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends Activity {
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
@@ -85,7 +86,7 @@ public class RegisterActivity extends AppCompatActivity {
             cancel = true;
         }
 
-        if (password != rePassword) {
+        if (!password.equals(rePassword)) {
             mRePasswordView.setError("The two passwords are different");
             focusView = mPasswordView;
             cancel = true;
