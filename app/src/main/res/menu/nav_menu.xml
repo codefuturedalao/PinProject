@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_user"
+            android:icon="@drawable/nav_user"
+            android:title="用户名" />
+        <item
+            android:id="@+id/nav_mail"
+            android:icon="@drawable/nav_mail"
+            android:title="邮箱" />
+        <item
+            android:id="@+id/nav_phone"
+            android:icon="@drawable/nav_phone"
+            android:title="手机号"/>
+        <item
+            android:id="@+id/nav_xmeter"
+            android:icon="@drawable/nav_xmeter"
+            android:title="服务半径"/>
+    </group>
+</menu>

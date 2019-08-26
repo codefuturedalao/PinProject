@@ -17,7 +17,7 @@ import java.util.Map;
 import top.codefuturesql.loginandregi.HttpUtil;
 import top.codefuturesql.loginandregi.Login;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
 
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"

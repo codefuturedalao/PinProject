@@ -10,12 +10,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             + "password varchar(50))";
     private Context mContext;
 
-    public MyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
-        super(context,name,factory,version);
+    public MyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, factory, version);
         mContext = context;
     }
+
     @Override
-    public void onCreate(SQLiteDatabase db){
+    public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_ACCOUNT);
     }
 

@@ -10,9 +10,17 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -39,6 +47,8 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 
+import fragment.MessageFragment;
+import fragment.SetXMeterFragment;
 import top.codefuturesql.loginandregi.*;
 
 import java.util.ArrayList;
@@ -62,7 +72,7 @@ public class MapActivity extends AppCompatActivity {
     private Boolean isFirstLocate = true;
     private boolean geoAlarm = false;
     private boolean geoMessage = true;
-
+    private DrawerLayout mDrawerLayout;
     //构造地图数据，显示定位
     private BDAbstractLocationListener MyLocationListener = new BDAbstractLocationListener() {
         @Override
@@ -102,8 +112,16 @@ public class MapActivity extends AppCompatActivity {
         //SDK使用默认路径
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_map);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+        //滑动菜单
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.draw_layout);
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+        }
         mMapView = (MapView) findViewById(R.id.bmapView);
         //调用定位初始化
         mLocationClient = new LocationClient(getApplicationContext());
@@ -112,7 +130,6 @@ public class MapActivity extends AppCompatActivity {
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
         mBaiduMap.setMyLocationEnabled(true);
         initLocation();
-
         mLocationClient.start();
 
         /*
@@ -127,6 +144,14 @@ public class MapActivity extends AppCompatActivity {
             }
         });
 */
+        ImageButton button1 = findViewById(R.id.sendMessage);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int layout = R.id.right_layout;
+                addFragment(new MessageFragment(), layout);
+            }
+        });
         //重新定位，刷新页面
         Button button2 = (Button) findViewById(R.id.relocation);
         button2.setOnClickListener(new View.OnClickListener() {
@@ -161,7 +186,20 @@ public class MapActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //悬浮按钮点击事件
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.setXmeter);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int layout = R.id.right_layout;
+                addFragment(new SetXMeterFragment(), layout);
+            }
+        });
+
+
         //定义地图单击事件方法
+        /*
         BaiduMap.OnMapClickListener listener = new BaiduMap.OnMapClickListener() {
             public void onMapClick(LatLng pot) {
                 mBaiduMap.clear();
@@ -184,8 +222,19 @@ public class MapActivity extends AppCompatActivity {
 
         };
         mBaiduMap.setOnMapClickListener(listener);
+        */
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                break;
+            default:
+        }
+        return true;
+    }
     //定义实时更新当前位置方法
     private void initLocation() {
         mBaiduMap.setMyLocationEnabled(true);
@@ -199,6 +248,14 @@ public class MapActivity extends AppCompatActivity {
         option.setIgnoreKillProcess(false);
         mLocationClient.setLocOption(option); //设置locationClientOption
         mLocationClient.setLocOption(option);
+    }
+
+    private void addFragment(Fragment fragment, int layout) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(layout, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     // 按照经纬度在地图上显示点

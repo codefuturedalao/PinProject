@@ -4,7 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class DatabaseUtil {
-    public static MyDatabaseHelper dbHelper;
+    public static MyDatabaseHelper dbHelper ;
     public static void createDatabase(){
         dbHelper.getWritableDatabase();
     }

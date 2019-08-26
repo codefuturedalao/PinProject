@@ -19,7 +19,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
 public class HttpUtil {
-    public static String ServeUrl = "http://192.168.1.103/Pin_back_end/UserServlet";
+    public static String ServeUrl = "http://192.168.1.103:8080/Pin_back_end/UserServlet";
     //创建HttpClient对象
     public static HttpClient httpClient = new DefaultHttpClient();
     /**

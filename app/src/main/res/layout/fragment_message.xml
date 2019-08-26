@@ -1,0 +1,101 @@
+
+<!-- TODO: Update blank fragment layout -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_linear"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="120dp"
+    android:background="#ffffff"
+    android:orientation="horizontal"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:layout_editor_absoluteX="8dp">
+
+    <TextView
+        android:id="@+id/empty5"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@drawable/border2"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:background="@drawable/title_shape"
+            android:text="编辑消息"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/messageSend"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="8dp"
+            android:background="@null"
+            android:ems="9"
+            android:hint="……
+
+
+
+
+"
+            android:inputType="textPersonName"
+            android:textAlignment="viewStart"
+            android:textColor="#000000"
+            android:textColorHint="#000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/linearlayout_top_line"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/clearMessage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:padding="4dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/cancel" />
+
+            <ImageButton
+                android:id="@+id/sMessage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/left_line"
+
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/send2" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/empty6"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="" />
+</LinearLayout>
+
