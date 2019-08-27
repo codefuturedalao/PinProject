@@ -98,7 +98,8 @@ public class LoginActivity extends AppCompatActivity {
 
             if (mAuthTask.login(url)) {
                 Toast.makeText(LoginActivity.this, "Success to log in!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, MapActivity.class);
+                Intent intent = new Intent();
+                intent.setClass(LoginActivity.this, MapActivity.class);
                 startActivity(intent);
             } else
                 Toast.makeText(LoginActivity.this, "Fail to log in!", Toast.LENGTH_SHORT).show();

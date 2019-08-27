@@ -59,7 +59,7 @@ import java.util.ListIterator;
 
 import top.codefuturesql.loginandregi.FuncUtil;
 
-public class MapActivity extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity implements MessageFragment.OnSendMessageListener{
 
     private MapView mMapView;
     private BaiduMap mBaiduMap;
@@ -99,10 +99,11 @@ public class MapActivity extends AppCompatActivity {
                 MapStatus.Builder builder = new MapStatus.Builder().target(ll).zoom(16f);
                 mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             }
+           /*
             if (geoMessage) {
                 addPoint();
-            }
-            FuncUtil.updatePosition((float)location.getLongitude(),(float)location.getLatitude());
+            }*/
+      //      FuncUtil.updatePosition((float)location.getLongitude(),(float)location.getLatitude());
         }
     };
 
@@ -347,6 +348,12 @@ public class MapActivity extends AppCompatActivity {
             }
         }
     }
+
+
+        public void OnSendMessage(String message) {
+            FuncUtil.sendMessage(message);
+        }
+
 
 
     //管理地图生命周期
